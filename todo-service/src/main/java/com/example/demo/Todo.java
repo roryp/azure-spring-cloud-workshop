@@ -1,22 +1,49 @@
 package com.example.demo;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Todo {
-
-    @Id
-    public String id;
-
-    public String description;
-
-    public boolean done;
 
     public Todo() {
     }
 
-    public Todo(String id, String description, boolean done) {
-        this.id = id;
+    public Todo(String description, boolean done) {
         this.description = description;
+        this.done = done;
+    }
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String description;
+
+    private boolean done;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
         this.done = done;
     }
 }

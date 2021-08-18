@@ -1,12 +1,9 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
-import java.util.List;
 
 @RestController
 public class TodoController {
@@ -20,14 +17,13 @@ public class TodoController {
     @PostConstruct
     public void init() {
         todoRepository.saveAll(Arrays.asList(
-                new Todo("1", "First item", true),
-                new Todo("2", "Second item", true),
-                new Todo("3", "Third item", false)));
+                new Todo("First item", true),
+                new Todo("Second item", true),
+                new Todo("Third item", false)));
     }
 
     @GetMapping("/")
-    public @ResponseBody
-    List<Todo> showAllTodos() {
+    public Iterable<Todo> getTodos() {
         return todoRepository.findAll();
     }
 }
